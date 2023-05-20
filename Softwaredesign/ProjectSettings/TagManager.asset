@@ -11,9 +11,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Wrong
+  - check
+  - circle
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Wrong
+    uniqueID: 1240404185
+    locked: 0
+  - name: CheckColider
+    uniqueID: 3383063639
     locked: 0
