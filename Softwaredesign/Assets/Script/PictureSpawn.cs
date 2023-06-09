@@ -6,26 +6,29 @@ using UnityEngine.UI;
 public class PictureSpawn : MonoBehaviour
 {
     public PictureBase[] PicturesPrefabs;
-    public PictureBase[] Pictures;
     public List<PictureBase> PictureList;
     public Hint hint;
     public int index = 0;
     public int _ClearCount;
+    private int shuffleindex = 1;
 
     public Text LeftText;
 
-    private void Awake()
+    private void Start()
     {
         PictureList = new List<PictureBase>();
         Vector3 position = new Vector3(0, -1.28f, 0f);
         for (int i = 0; i < PicturesPrefabs.Length; i++)
         {
             PictureList.Add(Instantiate(PicturesPrefabs[i], transform.position + position, Quaternion.identity));
+            PictureList[i].gameObject.SetActive(false);
+            Debug.Log("그림 선택 : " + i);
         }
     }
 
     public void Shuffle()
     {
+        Debug.Log("Shuffle!");
         for (int i = 0; i < PictureList.Count; i++)
         {
             PictureList[i].gameObject.SetActive(true);
@@ -52,9 +55,13 @@ public class PictureSpawn : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    private void Start()
+    private void Update()
     {
-        Shuffle();
+        if (GameManager.instance.gameStart && shuffleindex == 1)
+        {
+            Shuffle();
+            shuffleindex++;
+        }
     }
 
     // Update is called once per frame

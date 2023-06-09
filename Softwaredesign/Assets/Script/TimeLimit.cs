@@ -14,13 +14,21 @@ public class TimeLimit : MonoBehaviour
     private void Start()
     {
         TimeSlider.maxValue = 300f;
+        if (!GameManager.instance.gameStart)
+        {
+            TimeSlider.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (!GameManager.instance.gameOver)
+        if (!GameManager.instance.gameOver && GameManager.instance.gameStart)
         {
+            if (!TimeSlider.IsActive())
+            {
+                TimeSlider.gameObject.SetActive(true);
+            }
             LimitTime -= Time.deltaTime;
         }
 

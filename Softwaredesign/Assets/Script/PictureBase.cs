@@ -13,8 +13,19 @@ public class PictureBase : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        CheckList = new List<GameObject>();
-        ChildCollider = GetComponentsInChildren<Collider2D>();
+        ChildCollider = new Collider2D[transform.childCount];
+
+        int index = 0;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Collider2D childCollider = transform.GetChild(i).GetComponent<Collider2D>();
+
+            if (childCollider != null && childCollider != GetComponent<Collider2D>())
+            {
+                ChildCollider[index] = childCollider;
+                index++;
+            }
+        }
         for (int i = 0; i < ChildCollider.Length; i++)
         {
             Debug.Log("collider : " + (i + 1));

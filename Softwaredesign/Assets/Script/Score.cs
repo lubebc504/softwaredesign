@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
-    public GameManager gamemanager;
     private float score;
     private float bestscore;
 
     public void Awake()
     {
         bestscore = PlayerPrefs.GetFloat("BestScore");
+        Debug.Log("Bestscore : " + bestscore);
+        if (bestscore == 0)
+        {
+            bestscore = 0;
+        }
     }
 
     public void CalScore()
     {
-        score = (gamemanager.ManagePicture._ClearCount * 1000) + (gamemanager.timelim.LimitTime * 500) + (gamemanager.heart.health * 1000);
+        score = (GameManager.instance.ManagePicture._ClearCount * 1000) + (GameManager.instance.timelim.LimitTime * 500);
 
         if (bestscore == 0)
         {
@@ -30,5 +34,10 @@ public class Score : MonoBehaviour
     public float ReturnScore()
     {
         return score;
+    }
+
+    public float ReturnBestScore()
+    {
+        return bestscore;
     }
 }

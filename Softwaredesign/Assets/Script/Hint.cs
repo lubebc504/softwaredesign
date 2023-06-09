@@ -22,6 +22,16 @@ public class Hint : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        HintButtonText.text = "Hint" + HintCount + "/" + "3";
+
+        if (GameManager.instance.gameStart)
+        {
+            StartCoroutine(PicSpawn.PictureisCleared());
+        }
+    }
+
     public IEnumerator FadeHint()
     {
         int colindex = Random.Range(0, PicSpawn.PictureList[PicSpawn.index].ChildCollider.Length);

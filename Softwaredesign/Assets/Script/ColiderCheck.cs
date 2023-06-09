@@ -11,8 +11,6 @@ public class ColiderCheck : MonoBehaviour
 
     public GameObject Check;
 
-    public List<GameObject> CheckList = new List<GameObject>();
-
     private void Awake()
     {
         Collider = GetComponent<Collider2D>();
